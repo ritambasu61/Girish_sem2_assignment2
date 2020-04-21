@@ -19,12 +19,12 @@ for i in range (t.size):
         elif j==i:
             A[i][j]=-2
 b=-10*h*h*np.ones(t.size)
-L=np.tril(A,k=0) #This matrix contains the upper triangular elements of A
+L=np.tril(A,k=0) 
 U=np.triu(A,k=1) #This matrix contains the lower triangular elements of A
 l=np.linalg.inv(L) #inverse of matrix L
 def y(m):
     z=np.zeros(t.size) #initial guess of solution
-    for j in range (m): #j is the no of iteration
+    for j in range (m): #j is the no of iteration to used to plot candidate solutions
         z=np.dot(l,(b-np.dot(U,z)))
     z=np.insert(z,[0,t.size],[0,0]) #inserting the value of y at boundary points
     return z #return the sol by gauss-seidal method after m iteration
