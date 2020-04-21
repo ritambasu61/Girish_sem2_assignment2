@@ -140,3 +140,5 @@ def f(x,y):
 def bc(ya, yb):
     return np.array([ya[0] - y0 , yb[0] - yf])
 my_bvp(f ,bc ,t0 ,tf ,y0 ,yf)
+
+"""these codes are done using documentation in scipy librery"""
