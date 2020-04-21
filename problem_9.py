@@ -32,7 +32,8 @@ h=0.01  # initial value of step_size taken
 #defining array to append the numerical solutions
 y_arr=[]
 t_arr=[]
-
+count1=0
+count2=0
 t=t1
 while t<=t2 + h:
   y1 = RKUT4(t+h , RKUT4(t,  y , h) , h)  # evaluating y[t+2h] by first at t then at t+h
@@ -41,12 +42,15 @@ while t<=t2 + h:
   h_prime = row**(1/4.) * h #relation between h and h' through row
   if row**(1/4.)>1:
       h=h_prime
-      continue
+      continue   
+      count1=count1+1
+  
   else:
     h=h_prime
     y_arr.append(y)
     t_arr.append(t)
     y=RKUT4(t , y , h)
+    count2=count2+1
   t=t+h
 # plotting exact and numerical one
 t=numpy.arange(t1,t2+3,0.1)
@@ -57,3 +61,8 @@ plt.ylabel('y(t)')
 plt.title('RK4 Method with adaptive step-size control')
 plt.legend()
 plt.show()
+print('count2=',count2,'count1=',count1)
+"""results shows that count 1=0 i.e row >1 i.e h_prime >h does not happen for the give
+initial stepsize(h)=0.01.So, for our initial value of h for all cases get updated
+by the arequied accurate h i.e h_prime(which is esimated to match the given accuracy).
+"""
